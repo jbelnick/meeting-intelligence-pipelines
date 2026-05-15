@@ -1,0 +1,8 @@
+Morgan: The release-readiness review focused on the billing handoff, support runbook, and launch dashboard for the new account settings workflow.
+Avery: We confirmed the feature flag will stay off until the support runbook is approved.
+Riley: The only blocker is the missing webhook retry metric. Without that metric, support cannot distinguish a delayed event from a failed event.
+Morgan: Avery will add the webhook retry metric to the dashboard by Friday.
+Riley: Morgan will send the updated support runbook to the launch channel on Thursday.
+Avery: We agreed to keep the first rollout at 10 percent for one business day before expanding.
+Morgan: The open question is whether the billing team wants a separate alert for duplicate invoices?
+Riley: If the alert is not ready, the launch can continue as long as support has the manual query in the runbook.

@@ -1,0 +1,11 @@
+Host: This walkthrough shows the meeting intelligence pipeline from source capture to reviewed notes.
+
+Host: First, the command layer receives a request and creates a working folder for the recording or transcript. Metadata is written beside the transcript so later steps can see which model produced each artifact.
+
+Host: Second, the transcript is chunked before summarization. Chunking keeps long source material inside the model context window and makes retries cheaper when one request fails.
+
+Host: Third, each chunk produces a note sheet with overview, key facts, decisions, quotes, and action items. The final renderer merges those note sheets locally so the last step is deterministic.
+
+Reviewer: We confirmed that public examples must use synthetic data only. The scanner should fail the build if a banned client term or secret-like token appears.
+
+Host: The follow-up is to wire the demo into a portfolio README by Friday and keep generated outputs outside version control.

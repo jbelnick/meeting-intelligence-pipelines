@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "meeting-intelligence-pipelines"
+version = "0.1.0"
+description = "Public-safe demos for meeting and video intelligence pipelines."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Public Portfolio Demo" }]
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]

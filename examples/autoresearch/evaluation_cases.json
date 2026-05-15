@@ -1,0 +1,16 @@
+[
+  {
+    "caseId": "launch-readiness",
+    "transcript": "Morgan: The release-readiness review focused on the billing handoff, support runbook, and launch dashboard for the new account settings workflow.\nAvery: We confirmed the feature flag will stay off until the support runbook is approved.\nRiley: The only blocker is the missing webhook retry metric.\nMorgan: Avery will add the webhook retry metric to the dashboard by Friday.\nRiley: Morgan will send the updated support runbook to the launch channel on Thursday.\nAvery: We agreed to keep the first rollout at 10 percent for one business day before expanding.",
+    "requiredTerms": ["billing handoff", "support runbook", "webhook retry metric", "Friday", "Thursday", "10 percent"],
+    "forbiddenTerms": ["all attendees", "next quarter"],
+    "requiredSections": ["## Decisions", "## Next Steps", "## Risks And Blockers"]
+  },
+  {
+    "caseId": "data-quality-review",
+    "transcript": "Priya: The data-quality review covered duplicate account rows, missing owner fields, and stale enrichment timestamps.\nSam: We decided to block the import when owner is blank for more than 25 rows.\nLee: Priya will publish the rejected-row report by Monday.\nSam: The dependency is the warehouse backfill finishing before the Wednesday validation window.\nPriya: The open question is whether support needs the report in CSV or a dashboard tile?",
+    "requiredTerms": ["duplicate account rows", "owner is blank", "25 rows", "Monday", "Wednesday", "warehouse backfill"],
+    "forbiddenTerms": ["everyone", "later"],
+    "requiredSections": ["## Decisions", "## Next Steps", "## Open Questions"]
+  }
+]
