@@ -1,12 +1,12 @@
 # Meeting Intelligence Pipelines
 
-This is a sanitized engineering case study of a real meeting and video intelligence system. It shows how a Slack command routes through Hermes, triggers Claw workflow code, controls native macOS Voice Memos, extracts a transcript, runs local model summaries, judges the competing summaries, and feeds the result into an AutoResearch prompt-variant loop.
+This is a sanitized engineering case study of a real meeting and video intelligence system. It shows how a Slack command routes through Hermes, triggers a migrated native workflow bundle, controls macOS Voice Memos, extracts a transcript, runs local model summaries, judges the competing summaries, and feeds the result into an AutoResearch prompt-variant loop.
 
 All private client names, transcripts, audio, secrets, logs, and local operator details have been removed or replaced with ACME examples.
 
 ## What This Shows
 
-- Real `/voicememo` workflow shape: Slack command, Hermes `cipher-workflows`, Claw `voice-memo-controls`, native macOS Voice Memos, transcript extraction, dual summary branches, metadata, and judge artifacts.
+- Real `/voicememo` workflow shape: Slack command, Hermes `meeting-intelligence-workflows`, native voice memo controls, macOS Voice Memos, transcript extraction, dual summary branches, metadata, and judge artifacts.
 - Real `video-summarize` workflow shape: media ingestion, transcription, chunked summarization, sanitized note sheets, and deterministic rendering.
 - Real AutoResearch workflow shape: evaluated recording folders become `promptVariant` jobs, jobs produce `summary.json`, proposal-ready runs emit `proposal.json`, and prompt changes are promoted only after validation improvement with no regressions.
 - Public-safety workflow: tracked files are scanned for banned client terms, secret-like strings, private home paths, and private log filenames before publishing.
@@ -75,8 +75,8 @@ PYTHONPATH=src python3 scripts/run_full_demo.py
 
 Real system surfaces represented here:
 
-- Slack `/voicememo` routes through Hermes and the `cipher-workflows` Slack runner.
-- The Slack runner calls the Claw voice memo scripts instead of faking the flow inside Slack.
+- Slack `/voicememo` routes through Hermes and the `meeting-intelligence-workflows` Slack runner.
+- The Slack runner calls the migrated native workflow bundle instead of faking the flow inside Slack.
 - Native macOS Voice Memos is the capture surface.
 - The stop path calls the dual summary pipeline and records `channel`, `source`, `pipelineType`, `summaryModel`, `summaryFile`, and `summaryArtifacts`.
 - Model-specific summaries are evaluated by a judge route and written as `summary-evaluation.json` / `.md`.

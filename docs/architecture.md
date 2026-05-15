@@ -1,14 +1,14 @@
 # Architecture
 
-This repo is organized around the real workflow boundary: Slack and Hermes trigger the workflow, Claw owns the native macOS and model pipeline, artifacts preserve every branch result, and AutoResearch turns evaluation failures into prompt variants.
+This repo is organized around the real workflow boundary: Slack and Hermes trigger the workflow, a migrated Hermes-native bundle owns the macOS and model pipeline, artifacts preserve every branch result, and AutoResearch turns evaluation failures into prompt variants.
 
 ## System Map
 
 ```mermaid
 flowchart LR
     Slack["Slack slash command"] --> Hermes["Hermes gateway"]
-    Hermes --> Claw["Claw workflow runner"]
-    Claw --> Mac["macOS Voice Memos"]
+    Hermes --> Bundle["Hermes-native workflow bundle"]
+    Bundle --> Mac["macOS Voice Memos"]
     Mac --> Transcript["transcript.txt"]
     Transcript --> Summaries["model-specific summaries"]
     Summaries --> Eval["summary-evaluation.json"]

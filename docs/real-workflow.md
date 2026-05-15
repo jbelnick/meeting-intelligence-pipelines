@@ -9,39 +9,39 @@ sequenceDiagram
     participant User
     participant Slack
     participant Hermes as Hermes Slack gateway
-    participant Cipher as cipher-workflows Slack runner
-    participant Claw as Claw voice-memo controls
+    participant Workflows as meeting-intelligence-workflows runner
+    participant Native as Hermes-native voice memo bundle
     participant Mac as macOS Voice Memos
     participant Models as Local summary models
-    participant Judge as Cipher judge
+    participant Judge as Meeting quality judge
     participant Store as Recording artifacts
 
     User->>Slack: /voicememo
     Slack->>Hermes: slash command payload
-    Hermes->>Cipher: route voicememo through cipher-workflows
-    Cipher->>Slack: post voice memo controls
+    Hermes->>Workflows: route voicememo through meeting-intelligence-workflows
+    Workflows->>Slack: post voice memo controls
     User->>Slack: Start Recording - ACME
-    Cipher->>Claw: voice-memo-start.sh --collection ACME
-    Claw->>Mac: launch/focus native Voice Memos and start capture
+    Workflows->>Native: voice-memo-start.sh --collection ACME
+    Native->>Mac: launch/focus native Voice Memos and start capture
     User->>Slack: Stop -> Summarize
-    Cipher->>Claw: voice-memo-pipeline.sh --pipeline dual --channel slack
-    Claw->>Mac: stop recording and locate .m4a
-    Mac-->>Claw: native audio file or UI export fallback
-    Claw->>Claw: extract transcript and create pending folder
-    Claw->>Models: summarize sequential local model branches
-    Claw->>Models: run optional cloud branch in dual mode
-    Models-->>Claw: model-specific summary files
-    Claw->>Store: metadata.json, transcript.txt, summary files
-    Claw->>Judge: evaluate summaries
+    Workflows->>Native: voice-memo-pipeline.sh --pipeline dual --channel slack
+    Native->>Mac: stop recording and locate .m4a
+    Mac-->>Native: native audio file or UI export fallback
+    Native->>Native: extract transcript and create pending folder
+    Native->>Models: summarize sequential local model branches
+    Native->>Models: run optional cloud branch in dual mode
+    Models-->>Native: model-specific summary files
+    Native->>Store: metadata.json, transcript.txt, summary files
+    Native->>Judge: evaluate summaries
     Judge-->>Store: summary-evaluation.json / .md
-    Cipher->>Slack: update original message with final folder, summary, transcript
+    Workflows->>Slack: update original message with final folder, summary, transcript
 ```
 
 ## Important Runtime Details
 
-- Slack commands are handled by the Hermes gateway and routed through the `cipher-workflows` plugin.
+- Slack commands are handled by the Hermes gateway and routed through the `meeting-intelligence-workflows` runner.
 - Slack `/voicememo` uses a Slack-native runner instead of Telegram bridge semantics.
-- The runner posts or updates Slack control messages and calls the Claw voice memo scripts.
+- The runner posts or updates Slack control messages and calls the migrated Hermes-native workflow bundle.
 - Start calls the native voice memo start script with a collection. In this repo the private collection name is sanitized to `ACME`.
 - Stop calls `voice-memo-pipeline.sh --pipeline dual --channel slack --source slack-voicememo-controls`.
 - The native macOS Voice Memos app writes audio under the Voice Memos group container. If direct detection fails, the production scripts attempt a UI export fallback.

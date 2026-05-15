@@ -2,7 +2,7 @@
   "criteriaVersion": "voice-memo-summary-evaluator.v1",
   "evaluatedAt": "2026-05-14T18:24:09.000Z",
   "judge": {
-    "agent": "cipher",
+    "agent": "meeting-quality-judge",
     "model": "openai-codex/gpt-5.5",
     "reasoning": "high",
     "fastMode": true
