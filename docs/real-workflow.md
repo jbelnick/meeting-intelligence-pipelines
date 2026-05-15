@@ -5,36 +5,57 @@ This is the sanitized shape of the production workflow. Private names are replac
 ## Slack To Native Voice Memo
 
 ```mermaid
-sequenceDiagram
-    participant User
-    participant Slack
-    participant Hermes as Hermes Slack gateway
-    participant Workflows as meeting-intelligence-workflows runner
-    participant Native as Hermes-native voice memo bundle
-    participant Mac as macOS Voice Memos
-    participant Models as Local summary models
-    participant Judge
-    participant Store as Recording artifacts
+flowchart LR
+    subgraph Slack["Slack front door"]
+        Command["/voicememo"]
+        Panel["Voice memo controls<br/>Start / Stop / Status"]
+        Update["Final Slack update<br/>folder + summary + transcript"]
+    end
 
-    User->>Slack: /voicememo
-    Slack->>Hermes: slash command payload
-    Hermes->>Workflows: route voicememo through meeting-intelligence-workflows
-    Workflows->>Slack: post voice memo controls
-    User->>Slack: Start Recording - ACME
-    Workflows->>Native: voice-memo-start.sh --collection ACME
-    Native->>Mac: launch/focus native Voice Memos and start capture
-    User->>Slack: Stop -> Summarize
-    Workflows->>Native: voice-memo-pipeline.sh --pipeline dual --channel slack
-    Native->>Mac: stop recording and locate .m4a
-    Mac-->>Native: native audio file or UI export fallback
-    Native->>Native: extract transcript and create pending folder
-    Native->>Models: summarize sequential local model branches
-    Native->>Models: run optional cloud branch in dual mode
-    Models-->>Native: model-specific summary files
-    Native->>Store: metadata.json, transcript.txt, summary files
-    Native->>Judge: evaluate summaries
-    Judge-->>Store: summary-evaluation.json / .md
-    Workflows->>Slack: update original message with final folder, summary, transcript
+    subgraph Hermes["Hermes runtime"]
+        Gateway["Slack gateway"]
+        Runner["meeting-intelligence-workflows<br/>Slack runner"]
+    end
+
+    subgraph Native["Hermes-native workflow bundle"]
+        Start["voice-memo-start.sh<br/>collection = ACME"]
+        Record["macOS Voice Memos<br/>native recording"]
+        Stop["voice-memo-pipeline.sh<br/>dual + slack source"]
+        Audio["Locate .m4a<br/>or UI export fallback"]
+        Transcript["Transcript extraction<br/>sidecar, then Apple Speech"]
+        Pending["Pending folder<br/>audio + transcript"]
+    end
+
+    subgraph Summary["Summary and evaluation"]
+        Local["Sequential local models"]
+        Cloud["Optional cloud branch"]
+        Summaries["Model-specific<br/>summary files"]
+        Eval["Judge evaluation<br/>summary-evaluation.json / .md"]
+    end
+
+    subgraph Store["Recording artifact lane"]
+        Final["Final folder<br/>metadata + transcript + summaries"]
+    end
+
+    Command --> Gateway --> Runner --> Panel
+    Panel -->|"Start Recording - ACME"| Start --> Record
+    Panel -->|"Stop -> Summarize"| Stop
+    Record --> Stop --> Audio --> Transcript --> Pending
+    Pending --> Local --> Summaries
+    Pending --> Cloud --> Summaries
+    Summaries --> Eval --> Final --> Update
+
+    classDef slack fill:#eef6ff,stroke:#2563eb,color:#0f172a
+    classDef hermes fill:#f3e8ff,stroke:#7e22ce,color:#111827
+    classDef native fill:#ecfdf5,stroke:#059669,color:#0f172a
+    classDef model fill:#fff7ed,stroke:#ea580c,color:#111827
+    classDef artifact fill:#f8fafc,stroke:#475569,color:#0f172a
+
+    class Command,Panel,Update slack
+    class Gateway,Runner hermes
+    class Start,Record,Stop,Audio,Transcript,Pending native
+    class Local,Cloud,Summaries,Eval model
+    class Final artifact
 ```
 
 ## Important Runtime Details
