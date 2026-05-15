@@ -1,6 +1,6 @@
 # Summary Evaluation
 
-Judge: Meeting Quality Judge (`openai-codex/gpt-5.5`, High, speed enabled)
+Judge: `openai-codex/gpt-5.5`, High, speed enabled
 Evaluated: 2026-05-14T18:24:09.000Z
 
 Winner: [qwen3.6:27b-q5_K_M](<qwen3.6-27b-q5_K_M summary.md>) - 94/100

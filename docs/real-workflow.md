@@ -13,7 +13,7 @@ sequenceDiagram
     participant Native as Hermes-native voice memo bundle
     participant Mac as macOS Voice Memos
     participant Models as Local summary models
-    participant Judge as Meeting quality judge
+    participant Judge
     participant Store as Recording artifacts
 
     User->>Slack: /voicememo

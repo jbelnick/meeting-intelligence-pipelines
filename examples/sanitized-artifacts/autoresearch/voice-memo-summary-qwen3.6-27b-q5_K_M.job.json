@@ -7,7 +7,7 @@
       "id": "ACME-2026-05-14-1812-account-settings-launch-readiness",
       "transcript": "Morgan: ACME reviewed the account settings launch checklist, billing handoff, support runbook, and dashboard readiness.\nAvery: We confirmed the launch flag stays disabled until support approves the runbook.\nRiley: The blocker is the missing webhook retry metric. Support needs that metric to separate delayed events from failed events.\nMorgan: Avery will add the webhook retry metric by Friday.\nRiley: Morgan will send the updated support runbook to the launch channel on Thursday.\nAvery: We agreed to start at 10 percent for one business day before expanding.\nMorgan: The open question is whether ACME wants a separate duplicate-invoice alert.",
       "prompt": "Summarize this meeting transcript with the voice memo summary contract.",
-      "context": "Recent quality judge winner: qwen3.6:27b-q5_K_M 94/100.\nRecent rankings: qwen3.6:27b-q5_K_M 94/100; qwen3.6:35b-a3b-q4_K_M 87/100; mlx-community/Qwen3.6-27B-OptiQ-4bit 82/100; glm-5.1 79/100.\nPrompt improvement ideas: Preserve blockers, owners, dates, rollout percentages, and open questions exactly. Do not add meta commentary. Use Owner unclear when a task lacks an explicit owner."
+      "context": "Recent judge winner: qwen3.6:27b-q5_K_M 94/100.\nRecent rankings: qwen3.6:27b-q5_K_M 94/100; qwen3.6:35b-a3b-q4_K_M 87/100; mlx-community/Qwen3.6-27B-OptiQ-4bit 82/100; glm-5.1 79/100.\nPrompt improvement ideas: Preserve blockers, owners, dates, rollout percentages, and open questions exactly. Do not add meta commentary. Use Owner unclear when a task lacks an explicit owner."
     }
   ],
   "criteria": [
