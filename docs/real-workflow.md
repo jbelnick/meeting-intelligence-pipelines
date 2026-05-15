@@ -5,57 +5,62 @@ This is the sanitized shape of the production workflow. Private names are replac
 ## Slack To Native Voice Memo
 
 ```mermaid
-flowchart LR
-    subgraph Slack["Slack front door"]
+%%{init: {"flowchart": {"curve": "basis", "nodeSpacing": 48, "rankSpacing": 58}, "themeVariables": {"fontSize": "18px", "fontFamily": "Inter, ui-sans-serif, system-ui"}}}%%
+flowchart TB
+    subgraph Slack["1. Slack front door"]
+        direction TB
         Command["/voicememo"]
         Panel["Voice memo controls<br/>Start / Stop / Status"]
-        Update["Final Slack update<br/>folder + summary + transcript"]
     end
 
-    subgraph Hermes["Hermes runtime"]
+    subgraph Hermes["2. Hermes runtime"]
+        direction TB
         Gateway["Slack gateway"]
         Runner["meeting-intelligence-workflows<br/>Slack runner"]
     end
 
-    subgraph Native["Hermes-native workflow bundle"]
-        Start["voice-memo-start.sh<br/>collection = ACME"]
+    subgraph Native["3. Hermes-native workflow bundle"]
+        direction TB
+        Start["Start Recording - ACME<br/>voice-memo-start.sh"]
         Record["macOS Voice Memos<br/>native recording"]
-        Stop["voice-memo-pipeline.sh<br/>dual + slack source"]
+        Stop["Stop -> Summarize<br/>voice-memo-pipeline.sh"]
         Audio["Locate .m4a<br/>or UI export fallback"]
-        Transcript["Transcript extraction<br/>sidecar, then Apple Speech"]
+        Transcript["Extract transcript<br/>sidecar, then Apple Speech"]
         Pending["Pending folder<br/>audio + transcript"]
     end
 
-    subgraph Summary["Summary and evaluation"]
+    subgraph Summary["4. Summary and evaluation"]
+        direction TB
         Local["Sequential local models"]
         Cloud["Optional cloud branch"]
         Summaries["Model-specific<br/>summary files"]
         Eval["Judge evaluation<br/>summary-evaluation.json / .md"]
     end
 
-    subgraph Store["Recording artifact lane"]
+    subgraph Store["5. Recording artifact lane"]
+        direction TB
         Final["Final folder<br/>metadata + transcript + summaries"]
+        Update["Final Slack update<br/>folder + summary + transcript"]
     end
 
-    Command --> Gateway --> Runner --> Panel
-    Panel -->|"Start Recording - ACME"| Start --> Record
-    Panel -->|"Stop -> Summarize"| Stop
-    Record --> Stop --> Audio --> Transcript --> Pending
+    Command --> Panel --> Gateway --> Runner
+    Runner --> Start --> Record --> Stop
+    Stop --> Audio --> Transcript --> Pending
     Pending --> Local --> Summaries
     Pending --> Cloud --> Summaries
     Summaries --> Eval --> Final --> Update
 
-    classDef slack fill:#eef6ff,stroke:#2563eb,color:#0f172a
-    classDef hermes fill:#f3e8ff,stroke:#7e22ce,color:#111827
-    classDef native fill:#ecfdf5,stroke:#059669,color:#0f172a
-    classDef model fill:#fff7ed,stroke:#ea580c,color:#111827
-    classDef artifact fill:#f8fafc,stroke:#475569,color:#0f172a
+    classDef slack fill:#eef6ff,stroke:#2563eb,stroke-width:2px,color:#0f172a
+    classDef hermes fill:#f3e8ff,stroke:#7e22ce,stroke-width:2px,color:#111827
+    classDef native fill:#ecfdf5,stroke:#059669,stroke-width:2px,color:#0f172a
+    classDef model fill:#fff7ed,stroke:#ea580c,stroke-width:2px,color:#111827
+    classDef artifact fill:#f8fafc,stroke:#475569,stroke-width:2px,color:#0f172a
 
-    class Command,Panel,Update slack
+    class Command,Panel slack
     class Gateway,Runner hermes
     class Start,Record,Stop,Audio,Transcript,Pending native
     class Local,Cloud,Summaries,Eval model
-    class Final artifact
+    class Final,Update artifact
 ```
 
 ## Important Runtime Details
