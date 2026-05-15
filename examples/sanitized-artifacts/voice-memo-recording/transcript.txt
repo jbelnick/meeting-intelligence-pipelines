@@ -1,0 +1,7 @@
+Morgan: ACME reviewed the account settings launch checklist, billing handoff, support runbook, and dashboard readiness.
+Avery: We confirmed the launch flag stays disabled until support approves the runbook.
+Riley: The blocker is the missing webhook retry metric. Support needs that metric to separate delayed events from failed events.
+Morgan: Avery will add the webhook retry metric by Friday.
+Riley: Morgan will send the updated support runbook to the launch channel on Thursday.
+Avery: We agreed to start at 10 percent for one business day before expanding.
+Morgan: The open question is whether ACME wants a separate duplicate-invoice alert.

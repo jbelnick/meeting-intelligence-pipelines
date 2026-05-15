@@ -9,6 +9,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from meeting_intelligence import summarize_meeting_transcript, summarize_video_transcript
 from meeting_intelligence.autoresearch import load_cases, run_prompt_research, write_report
+from meeting_intelligence.replay import replay_case_study
 
 
 def main() -> int:
@@ -30,7 +31,13 @@ def main() -> int:
     markdown_path = outputs / "autoresearch-report.md"
     write_report(report, json_path, markdown_path)
 
-    for path in (voice_path, video_path, json_path, markdown_path):
+    replay_path = outputs / "real-workflow-replay.md"
+    replay_path.write_text(
+        replay_case_study(ROOT / "examples/sanitized-artifacts").to_markdown(),
+        encoding="utf-8",
+    )
+
+    for path in (voice_path, video_path, json_path, markdown_path, replay_path):
         print(path)
     return 0
 

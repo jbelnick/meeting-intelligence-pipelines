@@ -1,0 +1,57 @@
+{
+  "name": "voice-memo-summary-qwen3.6-27b-q5_K_M",
+  "model": "qwen3.6:27b-q5_K_M",
+  "status": "proposal_ready",
+  "startedAt": "2026-05-14T19:01:40.330Z",
+  "completedAt": "2026-05-14T19:11:56.419Z",
+  "variable": "promptVariant",
+  "generalization": {
+    "minTotalInputs": 3,
+    "validationRatio": 0.34,
+    "minValidationInputs": 1,
+    "minValidationMeanImprovement": 0.01,
+    "maxValidationRegressions": 0
+  },
+  "budget": {
+    "maxCandidatesPerRun": 4,
+    "maxModelCalls": 40,
+    "usedModelCalls": 18,
+    "plannedModelCalls": 20
+  },
+  "split": {
+    "trainInputs": 2,
+    "validationInputs": 1
+  },
+  "baseline": {
+    "meanScore": 0.5,
+    "trainMean": 0.5,
+    "validationMean": 0.5,
+    "pinnedAt": "2026-05-14T19:01:41.120Z",
+    "pinned": true
+  },
+  "bestCandidate": {
+    "variable": "promptVariant",
+    "value": {
+      "label": "voice-memo-detail-ownership-guard",
+      "systemPrompt": "Preserve named systems, owners, dates, blockers, data dependencies, exact counts, rollout gates, and open questions. Separate confirmed facts from tentative discussion. Use Owner unclear instead of guessing."
+    },
+    "settings": {
+      "temperature": 0.3,
+      "top_p": 0.95,
+      "top_k": 20,
+      "repeat_penalty": 1,
+      "min_p": 0,
+      "maxOutputTokens": 5000,
+      "label": "voice-memo-detail-ownership-guard"
+    },
+    "trainMean": 0.75,
+    "validationMean": 0.75,
+    "meanScore": 0.75
+  },
+  "promotion": {
+    "status": "proposal_ready",
+    "reason": "validation improved and no validation regressions were observed",
+    "validationDelta": 0.25,
+    "validationRegressions": 0
+  }
+}

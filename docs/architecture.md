@@ -1,18 +1,20 @@
 # Architecture
 
-This repo models three related pipelines with synthetic data and deterministic local code.
+This repo is organized around the real workflow boundary: Slack and Hermes trigger the workflow, Claw owns the native macOS and model pipeline, artifacts preserve every branch result, and AutoResearch turns evaluation failures into prompt variants.
 
 ## System Map
 
 ```mermaid
 flowchart LR
-    Command["Command surface"] --> Workspace["Working artifact folder"]
-    Workspace --> Transcript["Transcript text"]
-    Transcript --> Notes["Meeting or video notes"]
-    Notes --> Eval["Evaluation criteria"]
-    Eval --> Research["Prompt variant loop"]
-    Research --> Promotion["Promoted prompt guidance"]
-    Notes --> Safety["Public-safety scan"]
+    Slack["Slack slash command"] --> Hermes["Hermes gateway"]
+    Hermes --> Claw["Claw workflow runner"]
+    Claw --> Mac["macOS Voice Memos"]
+    Mac --> Transcript["transcript.txt"]
+    Transcript --> Summaries["model-specific summaries"]
+    Summaries --> Eval["summary-evaluation.json"]
+    Eval --> Research["AutoResearch promptVariant job"]
+    Research --> Promotion["proposal.json"]
+    Promotion --> Safety["public-safety scan"]
     Promotion --> Safety
 ```
 

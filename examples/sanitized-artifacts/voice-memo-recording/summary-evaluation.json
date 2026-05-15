@@ -1,0 +1,129 @@
+{
+  "criteriaVersion": "voice-memo-summary-evaluator.v1",
+  "evaluatedAt": "2026-05-14T18:24:09.000Z",
+  "judge": {
+    "agent": "cipher",
+    "model": "openai-codex/gpt-5.5",
+    "reasoning": "high",
+    "fastMode": true
+  },
+  "winner": {
+    "candidateId": "candidate-1",
+    "kind": "local",
+    "model": "qwen3.6:27b-q5_K_M",
+    "providerModel": "qwen3.6:27b-q5_K_M",
+    "file": "qwen3.6-27b-q5_K_M summary.md",
+    "score": 94,
+    "why": "Best balance of transcript fidelity, specific owners, dates, decisions, and blocker preservation."
+  },
+  "rankings": [
+    {
+      "rank": 1,
+      "candidateId": "candidate-1",
+      "kind": "local",
+      "model": "qwen3.6:27b-q5_K_M",
+      "providerModel": "qwen3.6:27b-q5_K_M",
+      "file": "qwen3.6-27b-q5_K_M summary.md",
+      "durationMs": 41240,
+      "durationSeconds": 41.24,
+      "score": 94,
+      "scores": {
+        "transcript_fidelity": 96,
+        "specificity": 95,
+        "decisions": 92,
+        "next_steps": 96,
+        "structure": 93,
+        "concision": 91
+      },
+      "rationale": "Preserved ACME, the support runbook gate, the webhook retry blocker, owners, dates, and rollout percentage.",
+      "missedImportantDetails": [],
+      "unsupportedClaims": []
+    },
+    {
+      "rank": 2,
+      "candidateId": "candidate-2",
+      "kind": "local",
+      "model": "qwen3.6:35b-a3b-q4_K_M",
+      "providerModel": "qwen3.6:35b-a3b-q4_K_M",
+      "file": "qwen3.6-35b-q4_K_M summary.md",
+      "durationMs": 56600,
+      "durationSeconds": 56.6,
+      "score": 87,
+      "scores": {
+        "transcript_fidelity": 88,
+        "specificity": 86,
+        "decisions": 86,
+        "next_steps": 90,
+        "structure": 88,
+        "concision": 84
+      },
+      "rationale": "Usable but less specific about the launch dashboard and duplicate-invoice open question.",
+      "missedImportantDetails": [
+        "duplicate-invoice alert open question"
+      ],
+      "unsupportedClaims": []
+    },
+    {
+      "rank": 3,
+      "candidateId": "candidate-3",
+      "kind": "local",
+      "model": "mlx-community/Qwen3.6-27B-OptiQ-4bit",
+      "providerModel": "mlx-community/Qwen3.6-27B-OptiQ-4bit",
+      "file": "mlx-qwen3.6-27b-optiq-4bit summary.md",
+      "durationMs": 48770,
+      "durationSeconds": 48.77,
+      "score": 82,
+      "scores": {
+        "transcript_fidelity": 84,
+        "specificity": 80,
+        "decisions": 80,
+        "next_steps": 83,
+        "structure": 84,
+        "concision": 82
+      },
+      "rationale": "Accurate but compresses too much operational detail.",
+      "missedImportantDetails": [
+        "runbook approval controls the launch flag"
+      ],
+      "unsupportedClaims": []
+    },
+    {
+      "rank": 4,
+      "candidateId": "candidate-4",
+      "kind": "cloud",
+      "model": "glm-5.1",
+      "providerModel": "glm-5.1",
+      "file": "glm-5.1 summary.md",
+      "durationMs": 33820,
+      "durationSeconds": 33.82,
+      "score": 79,
+      "scores": {
+        "transcript_fidelity": 82,
+        "specificity": 81,
+        "decisions": 78,
+        "next_steps": 80,
+        "structure": 76,
+        "concision": 77
+      },
+      "rationale": "Strong detail retention but includes meta commentary about summary quality.",
+      "missedImportantDetails": [],
+      "unsupportedClaims": [
+        "strongest summary requirement"
+      ]
+    }
+  ],
+  "modelRemovalSignals": [
+    {
+      "candidateId": "candidate-4",
+      "model": "glm-5.1",
+      "file": "glm-5.1 summary.md",
+      "severity": "watch",
+      "reason": "Useful but should avoid meta commentary in final customer-facing notes."
+    }
+  ],
+  "promptImprovementIdeas": [
+    "Preserve blockers, owners, dates, rollout percentages, and open questions exactly.",
+    "Do not add meta commentary about summary quality.",
+    "Use Owner unclear when a task lacks an explicit owner."
+  ]
+}

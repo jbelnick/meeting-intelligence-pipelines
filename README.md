@@ -1,15 +1,15 @@
 # Meeting Intelligence Pipelines
 
-This repository is a public-safe portfolio showcase for applied AI workflow engineering. It demonstrates how meeting audio, video transcripts, and evaluation-driven prompt improvement can work together without publishing private source data, secrets, or customer-specific material.
+This is a sanitized engineering case study of a real meeting and video intelligence system. It shows how a Slack command routes through Hermes, triggers Claw workflow code, controls native macOS Voice Memos, extracts a transcript, runs local model summaries, judges the competing summaries, and feeds the result into an AutoResearch prompt-variant loop.
 
-Everything in this repo is synthetic or sanitized. The architecture mirrors production patterns I have built: command-triggered capture, transcript generation, chunked summarization, deterministic rendering, evaluation, and prompt-variant promotion.
+All private client names, transcripts, audio, secrets, logs, and local operator details have been removed or replaced with ACME examples.
 
 ## What This Shows
 
-- `/voicememo` style workflow: capture or receive a meeting transcript, produce structured notes, save model-specific artifacts, and keep metadata about the chosen result.
-- `video-summarize` style workflow: ingest a video or audio transcript, chunk long text, build per-chunk notes, sanitize notes, and render a final summary locally.
-- AutoResearch style improvement loop: evaluate meeting-note outputs against concrete criteria, mine failure modes, test prompt variants, and promote the strongest variant.
-- Public-safety workflow: scan tracked content and generated artifacts for banned client terms and common secret patterns before publishing.
+- Real `/voicememo` workflow shape: Slack command, Hermes `cipher-workflows`, Claw `voice-memo-controls`, native macOS Voice Memos, transcript extraction, dual summary branches, metadata, and judge artifacts.
+- Real `video-summarize` workflow shape: media ingestion, transcription, chunked summarization, sanitized note sheets, and deterministic rendering.
+- Real AutoResearch workflow shape: evaluated recording folders become `promptVariant` jobs, jobs produce `summary.json`, proposal-ready runs emit `proposal.json`, and prompt changes are promoted only after validation improvement with no regressions.
+- Public-safety workflow: tracked files are scanned for banned client terms, secret-like strings, private home paths, and private log filenames before publishing.
 
 ## Quick Start
 
@@ -50,7 +50,13 @@ PYTHONPATH=src python3 scripts/run_video_summary_demo.py \
   --out outputs/video-summary-demo.md
 ```
 
-Run the AutoResearch style prompt-variant loop:
+Replay the sanitized real-workflow artifact chain:
+
+```bash
+PYTHONPATH=src python3 scripts/replay_pipeline.py
+```
+
+Run the AutoResearch prompt-variant demo:
 
 ```bash
 PYTHONPATH=src python3 scripts/run_autoresearch_demo.py \
@@ -67,20 +73,21 @@ PYTHONPATH=src python3 scripts/run_full_demo.py
 
 ## What Is Real vs Synthetic
 
-Real architectural ideas represented here:
+Real system surfaces represented here:
 
-- A command surface starts the workflow.
-- Audio or transcript artifacts are preserved separately from summaries.
-- Long transcript input is chunked before summary generation.
-- Summary rendering is deterministic once note sheets are parsed.
-- Evaluation criteria focus on factuality, owners, dates, decisions, blockers, and action items.
-- Prompt variants are promoted only when validation scores improve without regressions.
+- Slack `/voicememo` routes through Hermes and the `cipher-workflows` Slack runner.
+- The Slack runner calls the Claw voice memo scripts instead of faking the flow inside Slack.
+- Native macOS Voice Memos is the capture surface.
+- The stop path calls the dual summary pipeline and records `channel`, `source`, `pipelineType`, `summaryModel`, `summaryFile`, and `summaryArtifacts`.
+- Model-specific summaries are evaluated by a judge route and written as `summary-evaluation.json` / `.md`.
+- AutoResearch jobs use `promptVariant`, train/validation splits, promotion policy, and proposal artifacts.
 
 Synthetic parts:
 
-- Example transcripts are invented.
-- Model calls are represented by deterministic local functions so reviewers can run the repo without API keys.
-- Evaluation cases are small fixtures designed to show the mechanics of the loop.
+- ACME transcripts and summaries are invented.
+- Audio is intentionally omitted.
+- Sanitized artifacts preserve schema and lifecycle but not private content.
+- Demo scripts replay artifacts locally instead of contacting Slack, macOS apps, or model servers.
 
 ## Public-Safety Checks
 
@@ -92,6 +99,13 @@ python3 scripts/public_safety_scan.py --term "$BANNED_TERM"
 
 The scanner checks project files for banned terms supplied at runtime and common secret-like patterns. It avoids hard-coding private client names into the repository itself.
 
+## Key Docs
+
+- [Real Workflow](docs/real-workflow.md)
+- [AutoResearch Real Loop](docs/autoresearch-real-loop.md)
+- [Video Summarize Pipeline](docs/video-summarize.md)
+- [Sanitized Artifacts](examples/sanitized-artifacts/README.md)
+
 ## Engineering Notes
 
-The code is intentionally compact and dependency-free. In production, the same interfaces can be backed by real transcription providers, local OpenAI-compatible model servers, queue runners, and dashboard APIs. For this public repo, the focus is the pipeline architecture and verification discipline.
+The code is intentionally compact and dependency-free, but the artifact schemas and lifecycle names mirror the production workflow. The purpose is to let reviewers inspect the engineering design without exposing private data or needing private infrastructure.

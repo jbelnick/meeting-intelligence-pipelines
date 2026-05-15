@@ -5,12 +5,14 @@ export PYTHONPATH := src
 
 demo:
 	$(PYTHON) scripts/run_full_demo.py
+	$(PYTHON) scripts/replay_pipeline.py
 
 scan:
 	$(PYTHON) scripts/public_safety_scan.py --term "$${BANNED_TERM:-}"
 
 smoke:
 	$(PYTHON) scripts/run_full_demo.py
+	$(PYTHON) scripts/replay_pipeline.py
 
 test:
 	$(PYTHON) -m unittest discover -s tests -v

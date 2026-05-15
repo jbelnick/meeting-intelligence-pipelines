@@ -1,6 +1,6 @@
 # Voice Memo Pipeline
 
-The `/voicememo` style pipeline starts from a command or recording control and ends with structured meeting notes plus metadata.
+For the real case-study flow, start with [Real Workflow](real-workflow.md). This page documents the lightweight transcript-only demo kept for local testing.
 
 ```mermaid
 flowchart TD

@@ -1,0 +1,22 @@
+{
+  "name": "voice-memo-summary-qwen3.6-27b-q5_K_M",
+  "model": "qwen3.6:27b-q5_K_M",
+  "createdAt": "2026-05-14T19:11:56.419Z",
+  "settings": {
+    "temperature": 0.3,
+    "top_p": 0.95,
+    "top_k": 20,
+    "repeat_penalty": 1,
+    "min_p": 0,
+    "maxOutputTokens": 5000,
+    "label": "voice-memo-detail-ownership-guard",
+    "systemPrompt": "Preserve named systems, owners, dates, blockers, data dependencies, exact counts, rollout gates, and open questions. Separate confirmed facts from tentative discussion. Use Owner unclear instead of guessing."
+  },
+  "sourceSummary": "~/claw/runtime/autoresearch/results/voice-memo-summary-qwen3.6-27b-q5_K_M/summary.json",
+  "promotion": {
+    "status": "proposal_ready",
+    "reason": "validation improved and no validation regressions were observed",
+    "validationDelta": 0.25,
+    "validationRegressions": 0
+  }
+}

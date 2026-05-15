@@ -1,0 +1,59 @@
+{
+  "channel": "slack",
+  "collection": "ACME",
+  "createdAt": "2026-05-14T18:12:02.000Z",
+  "finalizedAt": "2026-05-14T18:22:41.000Z",
+  "originalRecordingPath": "~/Library/Group Containers/group.com.apple.VoiceMemos.shared/Recordings/ACME-redacted.m4a",
+  "pendingId": "20260514T181202-sanitized",
+  "source": "slack-voicememo-controls",
+  "title": "ACME Account Settings Launch Readiness",
+  "transcriptionStatus": "ok",
+  "summaryModel": "qwen3.6:27b-q5_K_M",
+  "summaryUrl": "http://127.0.0.1:11434/v1/chat/completions",
+  "summaryFile": "qwen3.6-27b-q5_K_M summary.md",
+  "pipelineType": "dual",
+  "summaryArtifacts": {
+    "local": {
+      "model": "qwen3.6:27b-q5_K_M",
+      "providerModel": "qwen3.6:27b-q5_K_M",
+      "file": "qwen3.6-27b-q5_K_M summary.md",
+      "status": "ok",
+      "durationMs": 41240,
+      "durationSeconds": 41.24
+    },
+    "localModels": [
+      {
+        "model": "qwen3.6:27b-q5_K_M",
+        "providerModel": "qwen3.6:27b-q5_K_M",
+        "file": "qwen3.6-27b-q5_K_M summary.md",
+        "status": "ok",
+        "durationMs": 41240,
+        "durationSeconds": 41.24
+      },
+      {
+        "model": "qwen3.6:35b-a3b-q4_K_M",
+        "providerModel": "qwen3.6:35b-a3b-q4_K_M",
+        "file": "qwen3.6-35b-q4_K_M summary.md",
+        "status": "ok",
+        "durationMs": 56600,
+        "durationSeconds": 56.6
+      },
+      {
+        "model": "mlx-community/Qwen3.6-27B-OptiQ-4bit",
+        "providerModel": "mlx-community/Qwen3.6-27B-OptiQ-4bit",
+        "file": "mlx-qwen3.6-27b-optiq-4bit summary.md",
+        "status": "ok",
+        "durationMs": 48770,
+        "durationSeconds": 48.77
+      }
+    ],
+    "cloud": {
+      "model": "glm-5.1",
+      "providerModel": "glm-5.1",
+      "file": "glm-5.1 summary.md",
+      "status": "ok",
+      "durationMs": 33820,
+      "durationSeconds": 33.82
+    }
+  }
+}

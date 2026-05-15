@@ -1,0 +1,60 @@
+{
+  "name": "voice-memo-summary-qwen3.6-27b-q5_K_M",
+  "model": "qwen3.6:27b-q5_K_M",
+  "baseModel": "qwen3.6:27b-q5_K_M",
+  "testInputs": [
+    {
+      "id": "ACME-2026-05-14-1812-account-settings-launch-readiness",
+      "transcript": "Morgan: ACME reviewed the account settings launch checklist, billing handoff, support runbook, and dashboard readiness.\nAvery: We confirmed the launch flag stays disabled until support approves the runbook.\nRiley: The blocker is the missing webhook retry metric. Support needs that metric to separate delayed events from failed events.\nMorgan: Avery will add the webhook retry metric by Friday.\nRiley: Morgan will send the updated support runbook to the launch channel on Thursday.\nAvery: We agreed to start at 10 percent for one business day before expanding.\nMorgan: The open question is whether ACME wants a separate duplicate-invoice alert.",
+      "prompt": "Summarize this meeting transcript with the voice memo summary contract.",
+      "context": "Recent Cipher judge winner: qwen3.6:27b-q5_K_M 94/100.\nRecent rankings: qwen3.6:27b-q5_K_M 94/100; qwen3.6:35b-a3b-q4_K_M 87/100; mlx-community/Qwen3.6-27B-OptiQ-4bit 82/100; glm-5.1 79/100.\nPrompt improvement ideas: Preserve blockers, owners, dates, rollout percentages, and open questions exactly. Do not add meta commentary. Use Owner unclear when a task lacks an explicit owner."
+    }
+  ],
+  "criteria": [
+    "Output uses only transcript-supported facts and does not invent names, dates, owners, amounts, or decisions",
+    "Output preserves concrete named systems, products, people, deadlines, dates, and constraints from the transcript",
+    "Summary section is concise but captures objective, context, scope, and outcome",
+    "Key Points are specific, non-duplicate, and avoid generic restatement",
+    "Decisions section includes only explicit decisions or clear agreements, or says None identified",
+    "Next Steps are grounded in the transcript, use Unassigned when the owner is unclear, and do not invent dates",
+    "Output follows the exact markdown section contract used by the voice memo pipeline"
+  ],
+  "sweeps": {
+    "promptVariant": [
+      {
+        "label": "baseline",
+        "systemPrompt": "Summarize meeting transcripts faithfully with clear sections."
+      },
+      {
+        "label": "voice-memo-detail-ownership-guard",
+        "systemPrompt": "Preserve named systems, owners, dates, blockers, data dependencies, exact counts, rollout gates, and open questions. Separate confirmed facts from tentative discussion. Use Owner unclear instead of guessing."
+      }
+    ]
+  },
+  "maxPromptIterations": 10,
+  "convergenceThreshold": 0.95,
+  "convergenceStreak": 3,
+  "outputDir": "~/claw/runtime/autoresearch/results/voice-memo-summary-qwen3.6-27b-q5_K_M",
+  "sourcePrompt": "voice memo summary contract",
+  "generalization": {
+    "minTotalInputs": 3,
+    "validationRatio": 0.34,
+    "minValidationInputs": 1,
+    "minValidationMeanImprovement": 0.01,
+    "maxValidationRegressions": 0
+  },
+  "budget": {
+    "maxCandidatesPerRun": 4,
+    "maxModelCalls": 40
+  },
+  "promotionPolicy": {
+    "mode": "proposal_only",
+    "approvedConfigPath": "~/claw/runtime/autoresearch/approved/voice-memo-summary.json"
+  },
+  "judge": {
+    "agent": "cipher",
+    "model": "openai-codex/gpt-5.5",
+    "reasoning": "high",
+    "fastMode": true
+  }
+}

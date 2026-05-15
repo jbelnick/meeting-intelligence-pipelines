@@ -13,6 +13,8 @@ SECRET_PATTERNS = {
     "github_token": re.compile(r"\bgh[pousr]_[A-Za-z0-9_]{30,}\b"),
     "generic_assignment_secret": re.compile(r"(?i)\b(api[_-]?key|token|secret|password)\s*[:=]\s*['\"][^'\"]{8,}['\"]"),
     "aws_access_key": re.compile(r"\bAKIA[0-9A-Z]{16}\b"),
+    "private_home_path": re.compile(r"/Users/[A-Za-z0-9._-]+/"),
+    "private_log_filename": re.compile(r"\b(?:agent|gateway|errors)\.log\b", re.IGNORECASE),
 }
 SKIP_DIRS = {".git", "__pycache__", ".pytest_cache", ".mypy_cache", ".venv", "venv"}
 BINARY_SUFFIXES = {".ico", ".png", ".jpg", ".jpeg", ".gif", ".pdf", ".m4a", ".mp3", ".mp4"}
@@ -24,7 +26,12 @@ def main() -> int:
     parser.add_argument("--term", action="append", default=[], help="Banned term supplied at runtime.")
     args = parser.parse_args()
 
-    terms = [term for term in args.term if term]
+    env_terms = [
+        term.strip()
+        for term in re.split(r"[,:\n]", os_environ_terms())
+        if term.strip()
+    ]
+    terms = [term for term in [*args.term, *env_terms] if term]
     findings = scan(args.root, terms)
     if findings:
         for finding in findings:
@@ -67,7 +74,7 @@ def iter_files(root: Path):
 def tracked_files(root: Path) -> list[Path]:
     try:
         result = subprocess.run(
-            ["git", "ls-files", "-z"],
+            ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
             cwd=root,
             check=True,
             stdout=subprocess.PIPE,
@@ -89,6 +96,12 @@ def read_text(path: Path) -> str | None:
         return path.read_text(encoding="utf-8")
     except UnicodeDecodeError:
         return None
+
+
+def os_environ_terms() -> str:
+    import os
+
+    return os.environ.get("PUBLIC_SAFETY_TERMS", "")
 
 
 if __name__ == "__main__":
