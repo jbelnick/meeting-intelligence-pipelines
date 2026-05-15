@@ -1,6 +1,8 @@
 # Meeting Intelligence Pipelines
 
-This is a sanitized engineering case study of a real meeting and video intelligence system. It shows how a Slack command routes through Hermes, triggers a migrated native workflow bundle, controls macOS Voice Memos, extracts a transcript, runs local model summaries, judges the competing summaries, and feeds the result into an AutoResearch prompt-variant loop.
+Meeting Intelligence Pipelines is a sanitized engineering case study of a production-style AI workflow: Slack `/voicememo` and `video-summarize` inputs flow through Hermes, native macOS capture/transcription, local-model summarization, and Judge evaluation, then AutoResearch mines weak notes and promotes prompt variants that improve future summaries. It shows the engineering behind applied AI automation: reproducible artifacts, local inference, evaluation loops, and public-safe release gates.
+
+![Meeting Intelligence workflow](assets/workflow.png)
 
 All private client names, transcripts, audio, secrets, logs, and local operator details have been removed or replaced with ACME examples.
 
