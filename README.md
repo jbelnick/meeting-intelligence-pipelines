@@ -1,5 +1,7 @@
 # Meeting Intelligence Pipelines
 
+[![Verify](https://github.com/jbelnick/meeting-intelligence-pipelines/actions/workflows/verify.yml/badge.svg)](https://github.com/jbelnick/meeting-intelligence-pipelines/actions/workflows/verify.yml)
+
 Meeting Intelligence Pipelines is a sanitized engineering case study of a production-style AI workflow: Slack `/voicememo` and `video-summarize` inputs flow through Hermes, native macOS capture/transcription, local-model summarization, and Judge evaluation, then AutoResearch mines weak notes and promotes prompt variants that improve future summaries. It shows the engineering behind applied AI automation: reproducible artifacts, local inference, evaluation loops, and public-safe release gates.
 
 ![Meeting Intelligence workflow](assets/workflow.png)
@@ -91,6 +93,21 @@ Synthetic parts:
 - Sanitized artifacts preserve schema and lifecycle but not private content.
 - Demo scripts replay artifacts locally instead of contacting Slack, macOS apps, or model servers.
 
+## How This Maps To The Real System
+
+This repository is a public-safe case study of the real workflow shape, not a live production export.
+
+| Production concept | Public representation |
+| --- | --- |
+| Slack-triggered voice memo controls | Command-shaped demo entry points and sanitized docs |
+| Native recording and transcript extraction | Invented transcript fixtures in `examples/transcripts/` |
+| Model-specific summary branches | Deterministic local renderers with model-shaped metadata |
+| Judge evaluation artifacts | Sanitized evaluation outputs and replay checks |
+| AutoResearch prompt-variant promotion | Synthetic cases that preserve the `promptVariant` lifecycle |
+| Private recordings, logs, and client data | Omitted or replaced with ACME examples |
+
+The real workflow boundary is documented in [Real Workflow](docs/real-workflow.md), the prompt-improvement loop is documented in [AutoResearch Real Loop](docs/autoresearch-real-loop.md), and the reviewer-facing narrative is in [Case Study](docs/case-study.md).
+
 ## Public-Safety Checks
 
 Run the scanner before publishing:
@@ -104,6 +121,7 @@ The scanner checks project files for banned terms supplied at runtime and common
 ## Key Docs
 
 - [Real Workflow](docs/real-workflow.md)
+- [Case Study](docs/case-study.md)
 - [AutoResearch Real Loop](docs/autoresearch-real-loop.md)
 - [Video Summarize Pipeline](docs/video-summarize.md)
 - [Sanitized Artifacts](examples/sanitized-artifacts/README.md)
