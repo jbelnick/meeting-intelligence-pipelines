@@ -7,19 +7,19 @@ This is the sanitized shape of the production workflow. Private names are replac
 ```mermaid
 %%{init: {"flowchart": {"curve": "basis", "nodeSpacing": 48, "rankSpacing": 58}, "themeVariables": {"fontSize": "18px", "fontFamily": "Inter, ui-sans-serif, system-ui"}}}%%
 flowchart TB
-    subgraph Slack["1. Slack front door"]
+    subgraph Slack["1 Slack front door"]
         direction TB
         Command["/voicememo"]
         Panel["Voice memo controls<br/>Start / Stop / Status"]
     end
 
-    subgraph Hermes["2. Hermes runtime"]
+    subgraph Hermes["2 Hermes runtime"]
         direction TB
         Gateway["Slack gateway"]
         Runner["meeting-intelligence-workflows<br/>Slack runner"]
     end
 
-    subgraph Native["3. Hermes-native workflow bundle"]
+    subgraph Native["3 Hermes-native workflow bundle"]
         direction TB
         Start["Start Recording - ACME<br/>voice-memo-start.sh"]
         Record["macOS Voice Memos<br/>native recording"]
@@ -29,7 +29,7 @@ flowchart TB
         Pending["Pending folder<br/>audio + transcript"]
     end
 
-    subgraph Summary["4. Summary and evaluation"]
+    subgraph Summary["4 Summary and evaluation"]
         direction TB
         Local["Sequential local models"]
         Cloud["Optional cloud branch"]
@@ -37,7 +37,7 @@ flowchart TB
         Eval["Judge evaluation<br/>summary-evaluation.json / .md"]
     end
 
-    subgraph Store["5. Recording artifact lane"]
+    subgraph Store["5 Recording artifact lane"]
         direction TB
         Final["Final folder<br/>metadata + transcript + summaries"]
         Update["Final Slack update<br/>folder + summary + transcript"]

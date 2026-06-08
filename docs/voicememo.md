@@ -5,14 +5,14 @@ This page documents the sanitized shape of the real Slack-triggered voice memo w
 ```mermaid
 %%{init: {"flowchart": {"curve": "basis", "nodeSpacing": 48, "rankSpacing": 58}, "themeVariables": {"fontSize": "18px", "fontFamily": "Inter, ui-sans-serif, system-ui"}}}%%
 flowchart TB
-    subgraph Slack["1. Slack command surface"]
+    subgraph Slack["1 Slack command surface"]
         direction TB
         Command["/voicememo"]
         Controls["Slack controls<br/>Start / Stop / Status"]
         Status["Thread updates<br/>recording, summarizing, delivered"]
     end
 
-    subgraph Hermes["2. Hermes routing"]
+    subgraph Hermes["2 Hermes routing"]
         direction TB
         Gateway["Hermes Slack gateway"]
         Runner["meeting-intelligence-workflows<br/>Slack runner"]
@@ -20,7 +20,7 @@ flowchart TB
         StopCall["Stop call<br/>pipeline = dual<br/>channel = slack"]
     end
 
-    subgraph Native["3. Native capture bundle"]
+    subgraph Native["3 Native capture bundle"]
         direction TB
         Start["voice-memo-start.sh"]
         App["macOS Voice Memos<br/>native recording"]
@@ -29,7 +29,7 @@ flowchart TB
         Transcript["Transcript sidecar<br/>then Apple Speech fallback"]
     end
 
-    subgraph Artifacts["4. Recording artifact lane"]
+    subgraph Artifacts["4 Recording artifact lane"]
         direction TB
         Pending["Pending folder<br/>audio + transcript"]
         Summaries["Model summary files<br/>one markdown per model"]

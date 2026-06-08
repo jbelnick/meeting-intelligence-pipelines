@@ -5,14 +5,14 @@ This page documents the sanitized shape of the real `video-summarize` workflow. 
 ```mermaid
 %%{init: {"flowchart": {"curve": "basis", "nodeSpacing": 48, "rankSpacing": 58}, "themeVariables": {"fontSize": "18px", "fontFamily": "Inter, ui-sans-serif, system-ui"}}}%%
 flowchart TB
-    subgraph Source["1. Source intake"]
+    subgraph Source["1 Source intake"]
         direction TB
         Request["User provides URL<br/>or transcript file"]
         Download["Download audio/video<br/>yt-dlp"]
         Existing["Existing transcript<br/>skips download"]
     end
 
-    subgraph Transcript["2. Transcript creation"]
+    subgraph Transcript["2 Transcript creation"]
         direction TB
         Audio["Extracted audio"]
         Mini["Mini Parakeet<br/>remote Apple Silicon path"]
@@ -20,7 +20,7 @@ flowchart TB
         Text["Transcript artifact<br/>plain text or JSON report"]
     end
 
-    subgraph Summary["3. Local summarization"]
+    subgraph Summary["3 Local summarization"]
         direction TB
         Chunk["Chunk transcript<br/>context-window aware"]
         Lock["Shared local summary lock<br/>protects model runner"]
@@ -28,7 +28,7 @@ flowchart TB
         Notes["Parsed chunk note sheets"]
     end
 
-    subgraph Render["4. Sanitized render"]
+    subgraph Render["4 Sanitized render"]
         direction TB
         Clean["Sanitize and dedupe notes"]
         Final["Deterministic final summary"]

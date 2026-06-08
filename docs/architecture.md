@@ -7,32 +7,32 @@ This repo is organized around the real workflow boundary: Slack and Hermes trigg
 ```mermaid
 %%{init: {"flowchart": {"curve": "basis", "nodeSpacing": 52, "rankSpacing": 62}, "themeVariables": {"fontSize": "18px", "fontFamily": "Inter, ui-sans-serif, system-ui"}}}%%
 flowchart TB
-    subgraph Entry["1. Command entry"]
+    subgraph Entry["1 Command entry"]
         direction TB
         Slack["Slack slash command"]
         Hermes["Hermes gateway"]
     end
 
-    subgraph Capture["2. Native capture"]
+    subgraph Capture["2 Native capture"]
         direction TB
         Bundle["Hermes-native<br/>workflow bundle"]
         Mac["macOS Voice Memos"]
         Transcript["transcript.txt"]
     end
 
-    subgraph Notes["3. Notes and artifacts"]
+    subgraph Notes["3 Notes and artifacts"]
         direction TB
         Summaries["Model-specific<br/>summary files"]
         Eval["summary-evaluation.json"]
     end
 
-    subgraph Research["4. Self-improvement"]
+    subgraph Research["4 Self-improvement"]
         direction TB
         Job["AutoResearch<br/>promptVariant job"]
         Proposal["proposal.json"]
     end
 
-    subgraph Safety["5. Public release gate"]
+    subgraph Safety["5 Public release gate"]
         direction TB
         Scan["public-safety scan"]
     end
