@@ -129,3 +129,12 @@ The scanner checks project files for banned terms supplied at runtime and common
 ## Engineering Notes
 
 The code is intentionally compact and dependency-free, but the artifact schemas and lifecycle names mirror the production workflow. The purpose is to let reviewers inspect the engineering design without exposing private data or needing private infrastructure.
+
+## Part Of One System
+
+This pipeline is one of four public repos that read as one system:
+
+- [cerebellum-local-ai-router](https://github.com/jbelnick/cerebellum-local-ai-router): routing and cost control, deciding which model does the work.
+- meeting-intelligence-pipelines (this repo): the workflow, turning raw transcripts into reviewed artifacts.
+- [meeting-intelligence-mcp](https://github.com/jbelnick/meeting-intelligence-mcp): the MCP server that exposes this pipeline's tools to any MCP client.
+- [llm-judge-evals](https://github.com/jbelnick/llm-judge-evals): the quality gate, a golden-dataset eval harness with an LLM judge and a CI regression gate.
