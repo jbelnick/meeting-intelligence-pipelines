@@ -1,3 +1,14 @@
+---
+Date Created: 2026-06-16
+Date modified: 2026-06-16
+Status: active
+Tags:
+  - belnick
+  - project
+  - meeting-intelligence-pipelines
+  - readme
+---
+
 # Sanitized Artifacts
 
 These files preserve the shape of the real workflow while replacing private content with ACME examples.

@@ -1,3 +1,13 @@
+---
+Date Created: 2026-05-14
+Date modified: 2026-06-16
+Status: active
+Tags:
+  - belnick
+  - project
+  - meeting-intelligence-pipelines
+---
+
 # Summary Evaluation
 
 Judge: `openai-codex/gpt-5.5`, High, speed enabled

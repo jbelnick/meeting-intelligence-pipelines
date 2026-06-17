@@ -1,3 +1,14 @@
+---
+Date Created: 2026-06-16
+Date modified: 2026-06-16 10:06 PM
+Status: active
+Tags:
+  - belnick
+  - project
+  - meeting-intelligence-pipelines
+  - agent-policy
+---
+
 # AGENTS.md - meeting-intelligence-pipelines
 
 Narrows the root [[AGENTS]] policy for

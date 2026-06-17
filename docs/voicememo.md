@@ -1,3 +1,13 @@
+---
+Date Created: 2026-06-16
+Date modified: 2026-06-16 10:06 PM
+Status: active
+Tags:
+  - belnick
+  - project
+  - meeting-intelligence-pipelines
+---
+
 # Voice Memo Pipeline
 
 This page documents the sanitized shape of the real Slack-triggered voice memo workflow. The local demo stays transcript-only, but the production-shaped diagram shows the actual command route, native macOS capture path, transcript extraction, summary branches, Judge output, and artifact contract.

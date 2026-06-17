@@ -1,3 +1,13 @@
+---
+Date Created: 2026-06-16
+Date modified: 2026-06-16 10:06 PM
+Status: active
+Tags:
+  - belnick
+  - project
+  - meeting-intelligence-pipelines
+---
+
 # Real Workflow
 
 This is the sanitized shape of the production workflow. Private names are replaced with ACME and private artifacts are omitted.

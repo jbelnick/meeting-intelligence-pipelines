@@ -1,3 +1,13 @@
+---
+Date Created: 2026-06-16
+Date modified: 2026-06-16 10:06 PM
+Status: active
+Tags:
+  - belnick
+  - project
+  - meeting-intelligence-pipelines
+---
+
 # Video Summarize Pipeline
 
 This page documents the sanitized shape of the real `video-summarize` workflow. The local demo uses a synthetic transcript, but the diagram mirrors the production path: media ingestion, transcription, chunked local summarization, parsed note sheets, and deterministic final rendering.

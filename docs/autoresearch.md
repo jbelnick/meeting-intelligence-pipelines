@@ -1,3 +1,13 @@
+---
+Date Created: 2026-06-16
+Date modified: 2026-06-16 10:06 PM
+Status: active
+Tags:
+  - belnick
+  - project
+  - meeting-intelligence-pipelines
+---
+
 # AutoResearch Loop
 
 For the real case-study flow, start with [AutoResearch Real Loop](autoresearch-real-loop.md). This page documents the small local evaluator used for fast tests in this public repo.

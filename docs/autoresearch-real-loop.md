@@ -1,3 +1,13 @@
+---
+Date Created: 2026-06-16
+Date modified: 2026-06-16 10:06 PM
+Status: active
+Tags:
+  - belnick
+  - project
+  - meeting-intelligence-pipelines
+---
+
 # AutoResearch Real Loop
 
 This repo includes sanitized excerpts of the actual prompt-improvement workflow used after voice memo summaries are evaluated.

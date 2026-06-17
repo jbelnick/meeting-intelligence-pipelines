@@ -1,3 +1,13 @@
+---
+Date Created: 2026-06-16
+Date modified: 2026-06-16 10:06 PM
+Status: active
+Tags:
+  - belnick
+  - project
+  - meeting-intelligence-pipelines
+---
+
 # Architecture
 
 This repo is organized around the real workflow boundary: Slack and Hermes trigger the workflow, a migrated Hermes-native bundle owns the macOS and model pipeline, artifacts preserve every branch result, and AutoResearch turns evaluation failures into prompt variants.
